@@ -14,11 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj" />
+    <ProjectReference Include="..\..\Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj" />
   </ItemGroup>
 
 </Project>
