@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{4C
 		Analysis\StyleCop.ruleset = Analysis\StyleCop.ruleset
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.Logic", "..\Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj", "{F5A8E175-908A-4A06-8CFA-5821F40A50C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.Logic", "Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj", "{F5A8E175-908A-4A06-8CFA-5821F40A50C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.DAL", "..\Alpha.Bootstrap.DAL\Alpha.Bootstrap.DAL.csproj", "{82611AAC-6E54-4652-B653-6BC457439559}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.DAL", "Alpha.Bootstrap.DAL\Alpha.Bootstrap.DAL.csproj", "{82611AAC-6E54-4652-B653-6BC457439559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.WebApi.Dtos", "..\Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj", "{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.WebApi.Dtos", "Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj", "{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

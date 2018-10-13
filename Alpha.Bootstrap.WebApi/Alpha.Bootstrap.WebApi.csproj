@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj" />
-    <ProjectReference Include="..\..\Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj" />
+    <ProjectReference Include="..\Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj" />
+    <ProjectReference Include="..\Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj" />
   </ItemGroup>
 
 </Project>
