@@ -1,0 +1,1 @@
+build-docker-webapi.cmd && run-webapi.cmd
