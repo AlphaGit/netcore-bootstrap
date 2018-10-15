@@ -11,11 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{4C
 		Analysis\StyleCop.ruleset = Analysis\StyleCop.ruleset
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.Logic", "Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj", "{F5A8E175-908A-4A06-8CFA-5821F40A50C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.Logic", "Alpha.Bootstrap.Logic\Alpha.Bootstrap.Logic.csproj", "{F5A8E175-908A-4A06-8CFA-5821F40A50C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.DAL", "Alpha.Bootstrap.DAL\Alpha.Bootstrap.DAL.csproj", "{82611AAC-6E54-4652-B653-6BC457439559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.DAL", "Alpha.Bootstrap.DAL\Alpha.Bootstrap.DAL.csproj", "{82611AAC-6E54-4652-B653-6BC457439559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.WebApi.Dtos", "Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj", "{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.WebApi.Dtos", "Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj", "{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.ApiClient", "Alpha.Bootstrap.ApiClient\Alpha.Bootstrap.ApiClient.csproj", "{6D5185AB-8C1E-44D0-A785-421458572D11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.ConsoleClient", "Alpha.Bootstrap.ConsoleClient\Alpha.Bootstrap.ConsoleClient.csproj", "{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5185AB-8C1E-44D0-A785-421458572D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5185AB-8C1E-44D0-A785-421458572D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5185AB-8C1E-44D0-A785-421458572D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5185AB-8C1E-44D0-A785-421458572D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
