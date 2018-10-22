@@ -17,9 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.DAL", "Alph
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.WebApi.Dtos", "Alpha.Bootstrap.WebApi.Dtos\Alpha.Bootstrap.WebApi.Dtos.csproj", "{F940893E-5E6C-4495-ACD3-5D51EBE7FB33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.ApiClient", "Alpha.Bootstrap.ApiClient\Alpha.Bootstrap.ApiClient.csproj", "{6D5185AB-8C1E-44D0-A785-421458572D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.ApiClient", "Alpha.Bootstrap.ApiClient\Alpha.Bootstrap.ApiClient.csproj", "{6D5185AB-8C1E-44D0-A785-421458572D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.ConsoleClient", "Alpha.Bootstrap.ConsoleClient\Alpha.Bootstrap.ConsoleClient.csproj", "{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.Bootstrap.ConsoleClient", "Alpha.Bootstrap.ConsoleClient\Alpha.Bootstrap.ConsoleClient.csproj", "{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{74EC8577-29B6-4F07-A4AD-796F2E87DE19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Bootstrap.ApiClient.Tests", "Tests\Alpha.Bootstrap.ApiClient.Tests\Alpha.Bootstrap.ApiClient.Tests.csproj", "{C4D08B7D-9037-4685-81B8-ED24E53A49C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +55,16 @@ Global
 		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03C08E6A-CBF0-4EF7-989D-1F531448EB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D08B7D-9037-4685-81B8-ED24E53A49C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D08B7D-9037-4685-81B8-ED24E53A49C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D08B7D-9037-4685-81B8-ED24E53A49C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D08B7D-9037-4685-81B8-ED24E53A49C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4D08B7D-9037-4685-81B8-ED24E53A49C1} = {74EC8577-29B6-4F07-A4AD-796F2E87DE19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04941919-4758-44BF-A187-B350998F4D5B}

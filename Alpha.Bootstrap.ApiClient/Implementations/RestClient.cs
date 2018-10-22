@@ -13,10 +13,10 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
         private readonly Uri _baseUri;
         private readonly IDictionary<string, string> _headers = new Dictionary<string, string>();
 
-        public RestClient(Configuration configuration)
+        public RestClient(Configuration configuration, HttpClient httpClient)
         {
             _baseUri = configuration.BaseUri;
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
         public async Task<RestResponse<TResource>> GetAsync<TResource>(string relativeUrl)
