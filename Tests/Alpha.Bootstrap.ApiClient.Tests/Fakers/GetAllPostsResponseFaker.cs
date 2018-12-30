@@ -1,7 +1,7 @@
 ﻿using Alpha.Bootstrap.WebApi.Dtos.v1;
 using Bogus;
 
-namespace Alpha.Bootstrap.ApiClient.Tests.DataGenerators
+namespace Alpha.Bootstrap.ApiClient.Tests.Fakers
 {
     class GetAllPostsResponseFaker
     {

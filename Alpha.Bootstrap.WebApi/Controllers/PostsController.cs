@@ -18,7 +18,6 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             _mediator = mediator;
         }
 
-        // GET api/posts
         [HttpGet]
         public async Task<ActionResult<GetAllPostsResponse>> Get()
         {
@@ -40,29 +39,28 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             };
         }
 
-        // GET api/posts/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
             return "value";
         }
 
-        // POST api/posts
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            // TODO
         }
 
-        // PUT api/posts/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            // TODO
         }
 
-        // DELETE api/posts/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            // TODO
         }
     }
 }

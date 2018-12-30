@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.Logic.Models;
 using Bogus;
 
-namespace Alpha.Bootstrap.ApiClient.Tests.DataGenerators
+namespace Alpha.Bootstrap.WebApi.Tests.Fakers
 {
-    class PostDtoFaker
+    public class LogicDtoFaker
     {
-        private readonly Faker<PostDto> _faker;
+        private readonly Faker<Post> _faker;
 
-        public PostDtoFaker()
+        public LogicDtoFaker()
         {
-            _faker = new Faker<PostDto>()
+            _faker = new Faker<Post>()
                 .Rules((f, p) =>
                 {
                     p.Id = Guid.NewGuid();
@@ -20,7 +20,7 @@ namespace Alpha.Bootstrap.ApiClient.Tests.DataGenerators
                 });
         }
 
-        public ICollection<PostDto> Generate(int count)
+        public ICollection<Post> Generate(int count)
             => _faker.Generate(count);
     }
 }
