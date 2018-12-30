@@ -20,6 +20,9 @@ namespace Alpha.Bootstrap.WebApi.Tests.Fakers
                 });
         }
 
+        public Post Generate()
+            => _faker.Generate();
+
         public ICollection<Post> Generate(int count)
             => _faker.Generate(count);
     }

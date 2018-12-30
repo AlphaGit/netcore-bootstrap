@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Dtos.v1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,13 +27,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             var response = await _mediator.Send(command);
 
             // TODO AutoMapper.
-            var mappedPosts = response.Posts.Select(p =>
-                new PostDto
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Content = p.Content
-                }).ToList();
+            var mappedPosts = response.Posts.Select(MapToPostDto).ToList();
 
             return new GetAllPostsResponse()
             {
@@ -40,9 +36,19 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<GetPostByIdResponse>> GetById(Guid id)
         {
-            return "value";
+            var command = new Features.Posts.GetById.Request() { Id = id };
+            var response = await _mediator.Send(command);
+
+            // TODO AutoMapper.
+            var post = response.Post;
+            var mappedPost = MapToPostDto(post);
+
+            return new GetPostByIdResponse()
+            {
+                Post = mappedPost
+            };
         }
 
         [HttpPost]
@@ -61,6 +67,16 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         public void Delete(int id)
         {
             // TODO
+        }
+
+        private static PostDto MapToPostDto(Post post)
+        {
+            return post == null ? null : new PostDto()
+            {
+                Content = post.Content,
+                Id = post.Id,
+                Title = post.Title,
+            };
         }
     }
 }
