@@ -5,7 +5,7 @@ using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Alpha.Bootstrap.IntegrationTests
+namespace Alpha.Bootstrap.IntegrationTests.Posts
 {
     public class Posts_Create
     {

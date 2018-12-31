@@ -2,12 +2,11 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL.Models;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
 using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Alpha.Bootstrap.IntegrationTests
+namespace Alpha.Bootstrap.IntegrationTests.Posts
 {
     public class Posts_Update
     {

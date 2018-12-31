@@ -5,7 +5,7 @@ using Alpha.Bootstrap.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Alpha.Bootstrap.IntegrationTests
+namespace Alpha.Bootstrap.IntegrationTests.Posts
 {
     public class Posts_DeleteById
     {

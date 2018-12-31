@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL.Models;
 using Xunit;
 
-namespace Alpha.Bootstrap.IntegrationTests
+namespace Alpha.Bootstrap.IntegrationTests.Posts
 {
     public class Posts_GetAllPosts
     {
