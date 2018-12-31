@@ -9,7 +9,7 @@ using Features = Alpha.Bootstrap.Logic.Features;
 
 namespace Alpha.Bootstrap.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/posts")]
     [ApiController]
     public class PostsController : ControllerBase
     {
@@ -64,9 +64,12 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> DeleteById(Guid id)
         {
-            // TODO
+            var command = new Features.Posts.DeleteById.Request() { Id = id };
+            await _mediator.Send(command);
+
+            return NoContent();
         }
 
         private static PostDto MapToPostDto(Post post)
