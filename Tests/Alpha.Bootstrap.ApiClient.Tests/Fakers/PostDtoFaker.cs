@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using Bogus;
 
 namespace Alpha.Bootstrap.ApiClient.Tests.Fakers

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.ApiClient.Implementations;
 using Alpha.Bootstrap.ApiClient.Tests.Fakers;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using Moq;
 using Xunit;
 

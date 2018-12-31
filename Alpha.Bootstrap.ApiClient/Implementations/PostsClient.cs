@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 
 namespace Alpha.Bootstrap.ApiClient.Implementations
 {

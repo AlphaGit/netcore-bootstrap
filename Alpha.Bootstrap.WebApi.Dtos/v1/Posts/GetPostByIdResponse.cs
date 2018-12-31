@@ -1,4 +1,4 @@
-﻿namespace Alpha.Bootstrap.WebApi.Dtos.v1
+﻿namespace Alpha.Bootstrap.WebApi.Dtos.v1.Posts
 {
     public class GetPostByIdResponse
     {

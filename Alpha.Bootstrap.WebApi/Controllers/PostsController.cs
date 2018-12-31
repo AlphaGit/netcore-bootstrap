@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.Logic.Models;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;

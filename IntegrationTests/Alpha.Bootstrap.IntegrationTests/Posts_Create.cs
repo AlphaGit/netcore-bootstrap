@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Alpha.Bootstrap.WebApi.Dtos.v1;
+using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
