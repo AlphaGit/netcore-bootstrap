@@ -79,7 +79,10 @@ namespace Alpha.Bootstrap.WebApi.Controllers
                     Title = postUpdateDto.Title,
                 }
             };
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
+
+            if (response.Post == null)
+                return NotFound();
 
             var routeUrl = Url.RouteUrl(new UrlRouteContext()
             {

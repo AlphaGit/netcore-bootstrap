@@ -56,5 +56,24 @@ namespace Alpha.Bootstrap.IntegrationTests.Posts
             var locationPostId = Guid.Parse(postIdString);
             Assert.Equal(post.Id, locationPostId);
         }
+
+        [Fact]
+        public async Task WhenNotFoundReturnsNotFound()
+        {
+            // Act.
+            var updatePostRequest = new UpdatePostRequest()
+            {
+                Content = "Some content",
+                Title = "Some title",
+            };
+            var restResponse = await _apiClient.PostsClient.Update(Guid.NewGuid(), updatePostRequest);
+
+            // Assert.
+            Assert.NotNull(restResponse);
+            Assert.Equal(HttpStatusCode.NotFound, restResponse.StatusCode);
+
+            var location = restResponse.HttpResponse.Headers.Location;
+            Assert.Null(location);
+        }
     }
 }

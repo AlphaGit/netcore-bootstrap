@@ -26,9 +26,16 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
                 Title = request.Post.Title,
             };
 
-            var trackingState = _dbContext.Attach(inPost);
-            trackingState.State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            try
+            {
+                var trackingState = _dbContext.Attach(inPost);
+                trackingState.State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync(cancellationToken);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return new Response() { Post = null };
+            }
 
             // TODO AutoMapper.
             var outPost = new Models.Post
