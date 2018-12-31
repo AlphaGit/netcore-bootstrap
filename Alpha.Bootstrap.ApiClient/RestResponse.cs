@@ -1,14 +1,16 @@
 ﻿using System.Net;
+using System.Net.Http;
 
 namespace Alpha.Bootstrap.ApiClient
 {
     public class RestResponse
     {
-        public HttpStatusCode StatusCode { get; }
+        public HttpStatusCode StatusCode => HttpResponse.StatusCode;
+        public HttpResponseMessage HttpResponse { get; }
 
-        public RestResponse(HttpStatusCode statusCode)
+        public RestResponse(HttpResponseMessage httpResponse)
         {
-            StatusCode = statusCode;
+            HttpResponse = httpResponse;
         }
     }
 
@@ -16,8 +18,8 @@ namespace Alpha.Bootstrap.ApiClient
     {
         public TResource Response { get; }
 
-        public RestResponse(HttpStatusCode statusCode, TResource response)
-            : base(statusCode)
+        public RestResponse(HttpResponseMessage httpResponse, TResource response)
+            : base(httpResponse)
         {
             Response = response;
         }

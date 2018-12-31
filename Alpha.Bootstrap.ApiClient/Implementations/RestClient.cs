@@ -75,15 +75,15 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
             string relativeUrl, HttpContent content)
         {
             var httpResponse = await ExecuteRequest(method, relativeUrl, content);
-            var response = await ParseResponse<TResource>(httpResponse);
-            return new RestResponse<TResource>(httpResponse.StatusCode, response);
+            var parsedResponse = await ParseResponse<TResource>(httpResponse);
+            return new RestResponse<TResource>(httpResponse, parsedResponse);
         }
 
         private async Task<RestResponse> RequestWithNoResponse(HttpMethod method, string relativeUrl,
             HttpContent content)
         {
             var httpResponse = await ExecuteRequest(method, relativeUrl, content);
-            return new RestResponse(httpResponse.StatusCode);
+            return new RestResponse(httpResponse);
         }
 
         private async Task<HttpResponseMessage> ExecuteRequest(HttpMethod method, string relativeUrl,

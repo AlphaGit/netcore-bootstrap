@@ -9,5 +9,7 @@ namespace Alpha.Bootstrap.ApiClient
         Task<RestResponse<GetAllPostsResponse>> GetAllPosts();
 
         Task<RestResponse> Delete(Guid id);
+
+        Task<RestResponse> Create(CreatePostRequest newPost);
     }
 }

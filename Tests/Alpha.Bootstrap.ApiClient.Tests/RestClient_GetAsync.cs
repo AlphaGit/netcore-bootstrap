@@ -8,12 +8,12 @@ using Xunit;
 
 namespace Alpha.Bootstrap.ApiClient.Tests
 {
-    public class RestClient_GetAsync_Tests
+    public class RestClient_GetAsync
     {
         private readonly RestClient _restClient;
         private readonly MockHttpMessageHandler _mockHttpClient;
 
-        public RestClient_GetAsync_Tests()
+        public RestClient_GetAsync()
         {
             var configuration = new Configuration()
             {

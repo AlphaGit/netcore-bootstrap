@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.ApiClient.Implementations;
 using Alpha.Bootstrap.ApiClient.Tests.Fakers;
@@ -8,13 +9,13 @@ using Xunit;
 
 namespace Alpha.Bootstrap.ApiClient.Tests
 {
-    public class PostsClient_GetAllPosts_Tests
+    public class PostsClient_GetAllPosts
     {
         private readonly Mock<IRestClient> _restClientMock;
 
         private readonly PostsClient _postsClient;
 
-        public PostsClient_GetAllPosts_Tests()
+        public PostsClient_GetAllPosts()
         {
             _restClientMock = new Mock<IRestClient>();
 
@@ -27,7 +28,7 @@ namespace Alpha.Bootstrap.ApiClient.Tests
             // Arrange.
             var responseContents = new GetAllPostsResponseFaker().Generate();
 
-            var expectedResponse = new RestResponse<GetAllPostsResponse>(HttpStatusCode.OK, responseContents);
+            var expectedResponse = new RestResponse<GetAllPostsResponse>(new HttpResponseMessage(HttpStatusCode.OK), responseContents);
 
             _restClientMock.Setup(r => r.GetAsync<GetAllPostsResponse>("posts"))
                 .ReturnsAsync(expectedResponse)

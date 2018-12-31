@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Alpha.Bootstrap.Logic.Features.Posts.GetAll;
+using Alpha.Bootstrap.Logic.Features.Posts.GetById;
 using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Controllers;
 using Alpha.Bootstrap.WebApi.Tests.Fakers;
@@ -12,7 +11,7 @@ using Xunit;
 
 namespace Alpha.Bootstrap.WebApi.Tests.Controllers
 {
-    public class PostsController_Get_Tests
+    public class PostsController_GetById
     {
         private readonly LogicDtoFaker _logicDtoFaker;
 
@@ -20,7 +19,7 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
 
         private readonly Mock<IMediator> _mediatorMock;
 
-        public PostsController_Get_Tests()
+        public PostsController_GetById()
         {
             _logicDtoFaker = new LogicDtoFaker();
 
@@ -30,29 +29,38 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task ReturnsAllPosts()
+        public async Task ReturnsFoundPost()
         {
             // Arrange.
-            var expectedPosts = _logicDtoFaker.Generate(2);
-            SetupMediatorResponse(expectedPosts);
+            var expectedPost = _logicDtoFaker.Generate();
+            SetupMediatorResponse(expectedPost);
 
             // Act.
-            var response = await _controller.Get();
+            var response = await _controller.GetById(expectedPost.Id);
 
+            // Assert.
             Assert.NotNull(response);
 
-            var posts = response.Value.Posts;
-            Assert.NotNull(posts);
-            Assert.NotEmpty(posts);
-
-            foreach (var expectedPost in expectedPosts)
-            {
-                var actualPost = posts.Single(p => p.Id == expectedPost.Id);
-                Assert.Equal(expectedPost.Content, actualPost.Content);
-                Assert.Equal(expectedPost.Content, actualPost.Content);
-            }
+            var actualPost = response.Value.Post;
+            Assert.NotNull(actualPost);
+            Assert.Equal(expectedPost.Id, actualPost.Id);
+            Assert.Equal(expectedPost.Content, actualPost.Content);
+            Assert.Equal(expectedPost.Content, actualPost.Content);
 
             VerifyMediatorCalled();
+        }
+
+        [Fact]
+        public async Task ReturnsNotFound()
+        {
+            // Arrange.
+            SetupMediatorResponse(null);
+
+            // Act.
+            var response = await _controller.GetById(Guid.NewGuid());
+
+            // Assert.
+            Assert.Null(response.Value.Post);
         }
 
         private void VerifyMediatorCalled()
@@ -62,13 +70,13 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
                 Times.Once);
         }
 
-        private void SetupMediatorResponse(ICollection<Post> posts)
+        private void SetupMediatorResponse(Post post)
         {
             _mediatorMock
                 .Setup(mock => mock.Send(It.IsAny<Request>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new Response()
                 {
-                    Posts = posts
+                    Post = post
                 });
         }
     }

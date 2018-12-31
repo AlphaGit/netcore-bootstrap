@@ -35,15 +35,14 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             };
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetPostById")]
         public async Task<ActionResult<GetPostByIdResponse>> GetById(Guid id)
         {
             var command = new Features.Posts.GetById.Request() { Id = id };
             var response = await _mediator.Send(command);
 
             // TODO AutoMapper.
-            var post = response.Post;
-            var mappedPost = MapToPostDto(post);
+            var mappedPost = MapToPostDto(response.Post);
 
             return new GetPostByIdResponse()
             {
@@ -52,9 +51,19 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> CreatePost([FromBody] CreatePostRequest postCreateDto)
         {
-            // TODO
+            var command = new Features.Posts.Create.Request()
+            {
+                Content = postCreateDto.Content,
+                Title = postCreateDto.Title,
+            };
+            var response = await _mediator.Send(command);
+
+            // TODO AutoMapper.
+            var mappedPost = MapToPostDto(response.Post);
+
+            return CreatedAtRoute("GetPostById", new { mappedPost.Id }, mappedPost);
         }
 
         [HttpPut("{id}")]

@@ -22,5 +22,10 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
         {
             return await _restClient.DeleteAsync($"posts/{id}");
         }
+
+        public async Task<RestResponse> Create(CreatePostRequest newPost)
+        {
+            return await _restClient.PostAsync($"posts", newPost);
+        }
     }
 }
