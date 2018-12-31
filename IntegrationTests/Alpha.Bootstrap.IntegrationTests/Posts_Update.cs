@@ -46,6 +46,15 @@ namespace Alpha.Bootstrap.IntegrationTests
 
             Assert.Equal(postUpdate.Content, postInDb.Content);
             Assert.Equal(postUpdate.Title, postInDb.Title);
+
+            var location = restResponse.HttpResponse.Headers.Location;
+            Assert.NotNull(location);
+
+            // Location: scheme://host:port/api/posts/[post-id]?possibleQuery
+            var path = location.GetComponents(UriComponents.Path, UriFormat.Unescaped);
+            var postIdString = path.Substring(path.LastIndexOf('/') + 1);
+            var locationPostId = Guid.Parse(postIdString);
+            Assert.Equal(post.Id, locationPostId);
         }
     }
 }

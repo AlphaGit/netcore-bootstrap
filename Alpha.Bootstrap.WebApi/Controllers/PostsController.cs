@@ -5,6 +5,7 @@ using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Dtos.v1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Features = Alpha.Bootstrap.Logic.Features;
 
 namespace Alpha.Bootstrap.WebApi.Controllers
@@ -79,6 +80,16 @@ namespace Alpha.Bootstrap.WebApi.Controllers
                 }
             };
             await _mediator.Send(command);
+
+            var routeUrl = Url.RouteUrl(new UrlRouteContext()
+            {
+                Host = Request.Host.Host,
+                Protocol = Request.Scheme,
+                RouteName = "GetPostById",
+                Values = new { Id = id }
+            });
+
+            Response.Headers.Add("Location", routeUrl);
 
             return NoContent();
         }
