@@ -11,5 +11,7 @@ namespace Alpha.Bootstrap.ApiClient
         Task<RestResponse> Delete(Guid id);
 
         Task<RestResponse> Create(CreatePostRequest newPost);
+
+        Task<RestResponse> Update(Guid id, UpdatePostRequest postUpdate);
     }
 }

@@ -17,7 +17,7 @@ namespace Alpha.Bootstrap.IntegrationTests
                     options.UseSqlite($"DataSource=file:{appUniqueConnection}?mode=memory&cache=shared");
                     options.ConfigureWarnings(w => w.Log());
                     options.EnableSensitiveDataLogging();
-                });
+                }, ServiceLifetime.Transient);
         }
     }
 }

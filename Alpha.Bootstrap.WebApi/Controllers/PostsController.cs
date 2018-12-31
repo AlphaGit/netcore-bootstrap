@@ -67,9 +67,20 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdatePostRequest postUpdateDto)
         {
-            // TODO
+            var command = new Features.Posts.Update.Request()
+            {
+                Post = new Post()
+                {
+                    Content = postUpdateDto.Content,
+                    Id = id,
+                    Title = postUpdateDto.Title,
+                }
+            };
+            await _mediator.Send(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

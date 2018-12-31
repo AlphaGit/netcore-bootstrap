@@ -27,5 +27,10 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
         {
             return await _restClient.PostAsync($"posts", newPost);
         }
+
+        public async Task<RestResponse> Update(Guid id, UpdatePostRequest postUpdate)
+        {
+            return await _restClient.PutAsync($"posts/{id}", postUpdate);
+        }
     }
 }
