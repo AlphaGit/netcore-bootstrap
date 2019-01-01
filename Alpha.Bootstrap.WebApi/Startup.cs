@@ -27,6 +27,7 @@ namespace Alpha.Bootstrap.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // TODO Make configurable based on settings.
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -38,6 +39,12 @@ namespace Alpha.Bootstrap.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alpha.Bootstrap API v1");
+            });
         }
     }
 }

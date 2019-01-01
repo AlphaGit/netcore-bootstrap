@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace Alpha.Bootstrap.WebApi
 {
@@ -9,6 +10,7 @@ namespace Alpha.Bootstrap.WebApi
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureSwagger(services);
             ConfigureFeatures(services);
             ConfigureDataAccess(services);
         }
@@ -29,6 +31,16 @@ namespace Alpha.Bootstrap.WebApi
                     o.UseNpgsql(
                         "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;");
                 });
+        }
+
+        private void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Alpha.Bootstrap API", Version = "v1" });
+                c.EnableAnnotations();
+                c.DescribeAllEnumsAsStrings();
+            });
         }
     }
 }

@@ -6,6 +6,7 @@ using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Swashbuckle.AspNetCore.Annotations;
 using Features = Alpha.Bootstrap.Logic.Features;
 
 namespace Alpha.Bootstrap.WebApi.Controllers
@@ -22,6 +23,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation("Gets all posts.")]
         public async Task<ActionResult<GetAllPostsResponse>> Get()
         {
             var command = new Features.Posts.GetAll.Request();
@@ -37,6 +39,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetPostById")]
+        [SwaggerOperation("Gets a post by its identifier.")]
         public async Task<ActionResult<GetPostByIdResponse>> GetById(Guid id)
         {
             var command = new Features.Posts.GetById.Request() { Id = id };
@@ -52,6 +55,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation("Creates a new post.")]
         public async Task<ActionResult> CreatePost([FromBody] CreatePostRequest postCreateDto)
         {
             var command = new Features.Posts.Create.Request()
@@ -68,6 +72,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [SwaggerOperation("Updates an existing post.")]
         public async Task<ActionResult> Update(Guid id, [FromBody] UpdatePostRequest postUpdateDto)
         {
             var command = new Features.Posts.Update.Request()
@@ -98,6 +103,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerOperation("Deletes a post.")]
         public async Task<ActionResult> DeleteById(Guid id)
         {
             var command = new Features.Posts.DeleteById.Request() { Id = id };
