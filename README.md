@@ -21,3 +21,4 @@ A bootstrap project to get quickly up and running with dotnet projects.
 - `run-migrations`: updates the running database server to its latest version of the migrations
 - `run-webapi`: run a local version of the web API project, based on the latest compiled image
 - `start-database`: start a database server
+- `generate-ssl-certificates`: generate a new set of SSL certificates used by the database server

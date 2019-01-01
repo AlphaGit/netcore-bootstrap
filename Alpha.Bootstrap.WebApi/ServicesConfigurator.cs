@@ -29,7 +29,7 @@ namespace Alpha.Bootstrap.WebApi
 
                     // TODO Move into configuration.
                     o.UseNpgsql(
-                        "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;");
+                        "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;");
                 });
         }
 

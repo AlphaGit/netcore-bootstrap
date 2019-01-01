@@ -3,4 +3,4 @@ docker run ^
     --network host ^
     --rm ^
     migrate/migrate ^
-    -path=/migrations -verbose -database postgres://appUser:appPassword@localhost:5432/appDb?sslmode=disable up
+    -path=/migrations -verbose -database postgres://appUser:appPassword@localhost:5432/appDb?sslmode=require up
