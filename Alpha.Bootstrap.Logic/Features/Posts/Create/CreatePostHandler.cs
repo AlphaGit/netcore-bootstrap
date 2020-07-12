@@ -6,25 +6,25 @@ using MediatR;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.Create
 {
-    public class Handler : IRequestHandler<Request, Response>
+    public class CreatePostHandler : IRequestHandler<CreatePostRequest, CreatePostResponse>
     {
         private readonly BlogDbContext _dbContext;
 
-        public Handler(BlogDbContext dbContext)
+        public CreatePostHandler(BlogDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+        public async Task<CreatePostResponse> Handle(CreatePostRequest createPostRequest, CancellationToken cancellationToken)
         {
             // TODO AutoMapper.
             var inPost = new Post()
             {
-                Content = request.Content,
-                Title = request.Title,
+                Content = createPostRequest.Content,
+                Title = createPostRequest.Title,
             };
 
-            _dbContext.Posts.Add(inPost);
+            await _dbContext.Posts.AddAsync(inPost, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             // TODO AutoMapper.
@@ -35,7 +35,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Create
                 Content = inPost.Content,
             };
 
-            return new Response() { Post = outPost };
+            return new CreatePostResponse() { Post = outPost };
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.GetById
 {
-    public class Response
+    public class GetPostByIdResponse
     {
         public Post Post { get; set; }
     }

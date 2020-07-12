@@ -58,15 +58,15 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
         private void VerifyMediatorCalled()
         {
             _mediatorMock.Verify(mock =>
-                mock.Send(It.IsAny<Request>(), It.IsAny<CancellationToken>()),
+                mock.Send(It.IsAny<GetAllPostsRequest>(), It.IsAny<CancellationToken>()),
                 Times.Once);
         }
 
         private void SetupMediatorResponse(ICollection<Post> posts)
         {
             _mediatorMock
-                .Setup(mock => mock.Send(It.IsAny<Request>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new Response()
+                .Setup(mock => mock.Send(It.IsAny<GetAllPostsRequest>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new GetAllPostsResponse()
                 {
                     Posts = posts
                 });

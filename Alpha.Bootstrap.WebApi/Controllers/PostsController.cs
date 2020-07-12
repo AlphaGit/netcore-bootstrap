@@ -26,7 +26,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         [SwaggerOperation("Gets all posts.")]
         public async Task<ActionResult<GetAllPostsResponse>> Get()
         {
-            var command = new Features.Posts.GetAll.Request();
+            var command = new Features.Posts.GetAll.GetAllPostsRequest();
             var response = await _mediator.Send(command);
 
             // TODO AutoMapper.
@@ -42,7 +42,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         [SwaggerOperation("Gets a post by its identifier.")]
         public async Task<ActionResult<GetPostByIdResponse>> GetById(Guid id)
         {
-            var command = new Features.Posts.GetById.Request() { Id = id };
+            var command = new Features.Posts.GetById.GetPostByIdRequest() { Id = id };
             var response = await _mediator.Send(command);
 
             // TODO AutoMapper.
@@ -58,7 +58,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         [SwaggerOperation("Creates a new post.")]
         public async Task<ActionResult> CreatePost([FromBody] CreatePostRequest postCreateDto)
         {
-            var command = new Features.Posts.Create.Request()
+            var command = new Features.Posts.Create.CreatePostRequest()
             {
                 Content = postCreateDto.Content,
                 Title = postCreateDto.Title,
@@ -75,7 +75,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         [SwaggerOperation("Updates an existing post.")]
         public async Task<ActionResult> Update(Guid id, [FromBody] UpdatePostRequest postUpdateDto)
         {
-            var command = new Features.Posts.Update.Request()
+            var command = new Features.Posts.Update.UpdatePostRequest()
             {
                 Post = new Post()
                 {
@@ -106,7 +106,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         [SwaggerOperation("Deletes a post.")]
         public async Task<ActionResult> DeleteById(Guid id)
         {
-            var command = new Features.Posts.DeleteById.Request() { Id = id };
+            var command = new Features.Posts.DeleteById.DeletePostByIdRequest() { Id = id };
             await _mediator.Send(command);
 
             return NoContent();

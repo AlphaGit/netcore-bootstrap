@@ -7,23 +7,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.Update
 {
-    public class Handler : IRequestHandler<Request, Response>
+    public class UpdatePostHandler : IRequestHandler<UpdatePostRequest, UpdatePostResponse>
     {
         private readonly BlogDbContext _dbContext;
 
-        public Handler(BlogDbContext dbContext)
+        public UpdatePostHandler(BlogDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+        public async Task<UpdatePostResponse> Handle(UpdatePostRequest updatePostRequest, CancellationToken cancellationToken)
         {
             // TODO AutoMapper.
             var inPost = new Post()
             {
-                Content = request.Post.Content,
-                Id = request.Post.Id,
-                Title = request.Post.Title,
+                Content = updatePostRequest.Post.Content,
+                Id = updatePostRequest.Post.Id,
+                Title = updatePostRequest.Post.Title,
             };
 
             try
@@ -34,7 +34,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
             }
             catch (DbUpdateConcurrencyException)
             {
-                return new Response() { Post = null };
+                return new UpdatePostResponse() { Post = null };
             }
 
             // TODO AutoMapper.
@@ -45,7 +45,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
                 Content = inPost.Content,
             };
 
-            return new Response() { Post = outPost };
+            return new UpdatePostResponse() { Post = outPost };
         }
     }
 }

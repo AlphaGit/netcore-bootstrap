@@ -2,7 +2,7 @@
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.Create
 {
-    public class Response
+    public class CreatePostResponse
     {
         public Post Post { get; set; }
     }
