@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL;
 using Alpha.Bootstrap.Logic.Models;
+using FluentResults;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.GetById
 {
-    public class GetPostByIdHandler : IRequestHandler<GetPostByIdRequest, GetPostByIdResponse>
+    public class GetPostByIdHandler : IRequestHandler<GetPostByIdRequest, Result<Post>>
     {
         private readonly BlogDbContext _dbContext;
 
@@ -16,7 +17,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.GetById
             _dbContext = dbContext;
         }
 
-        public async Task<GetPostByIdResponse> Handle(GetPostByIdRequest getPostByIdRequest, CancellationToken cancellationToken)
+        public async Task<Result<Post>> Handle(GetPostByIdRequest getPostByIdRequest, CancellationToken cancellationToken)
         {
             var post = await _dbContext.Posts.SingleOrDefaultAsync(p => p.Id == getPostByIdRequest.Id, cancellationToken);
 
@@ -28,7 +29,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.GetById
                 Content = post.Content,
             };
 
-            return new GetPostByIdResponse() { Post = mappedPost };
+            return Result.Ok(mappedPost);
         }
     }
 }

@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL;
 using Alpha.Bootstrap.DAL.Models;
+using FluentResults;
 using MediatR;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.Create
 {
-    public class CreatePostHandler : IRequestHandler<CreatePostRequest, CreatePostResponse>
+    public class CreatePostHandler : IRequestHandler<CreatePostRequest, Result<Models.Post>>
     {
         private readonly BlogDbContext _dbContext;
 
@@ -15,7 +16,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Create
             _dbContext = dbContext;
         }
 
-        public async Task<CreatePostResponse> Handle(CreatePostRequest createPostRequest, CancellationToken cancellationToken)
+        public async Task<Result<Models.Post>> Handle(CreatePostRequest createPostRequest, CancellationToken cancellationToken)
         {
             // TODO AutoMapper.
             var inPost = new Post()
@@ -35,7 +36,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Create
                 Content = inPost.Content,
             };
 
-            return new CreatePostResponse() { Post = outPost };
+            return Result.Ok(outPost);
         }
     }
 }

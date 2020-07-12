@@ -48,7 +48,7 @@ namespace Alpha.Bootstrap.IntegrationTests.Posts
 
             // Assert.
             Assert.NotNull(restResponse);
-            Assert.Equal(HttpStatusCode.NoContent, restResponse.StatusCode);
+            Assert.Equal(HttpStatusCode.NotFound, restResponse.StatusCode);
 
             var dbContext2 = _testServer.GetBlogDbContext();
             Assert.False(await dbContext2.Posts.AnyAsync());

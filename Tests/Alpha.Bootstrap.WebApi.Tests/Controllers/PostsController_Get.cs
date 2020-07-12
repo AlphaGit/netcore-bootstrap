@@ -6,6 +6,7 @@ using Alpha.Bootstrap.Logic.Features.Posts.GetAll;
 using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Controllers;
 using Alpha.Bootstrap.WebApi.Tests.Fakers;
+using FluentResults;
 using MediatR;
 using Moq;
 using Xunit;
@@ -66,10 +67,7 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
         {
             _mediatorMock
                 .Setup(mock => mock.Send(It.IsAny<GetAllPostsRequest>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new GetAllPostsResponse()
-                {
-                    Posts = posts
-                });
+                .ReturnsAsync(Result.Ok(posts));
         }
     }
 }

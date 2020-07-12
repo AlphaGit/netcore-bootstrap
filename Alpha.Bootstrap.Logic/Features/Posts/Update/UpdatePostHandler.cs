@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL;
 using Alpha.Bootstrap.DAL.Models;
+using Alpha.Bootstrap.Logic.Models.Errors;
+using FluentResults;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.Update
 {
-    public class UpdatePostHandler : IRequestHandler<UpdatePostRequest, UpdatePostResponse>
+    public class UpdatePostHandler : IRequestHandler<UpdatePostRequest, Result<Models.Post>>
     {
         private readonly BlogDbContext _dbContext;
 
@@ -16,8 +18,12 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
             _dbContext = dbContext;
         }
 
-        public async Task<UpdatePostResponse> Handle(UpdatePostRequest updatePostRequest, CancellationToken cancellationToken)
+        public async Task<Result<Models.Post>> Handle(UpdatePostRequest updatePostRequest, CancellationToken cancellationToken)
         {
+            var postExists = await _dbContext.Posts.AnyAsync(p => p.Id == updatePostRequest.Post.Id, cancellationToken);
+            if (!postExists)
+                return Result.Fail<Models.Post>(new ResourceNotFoundError());
+
             // TODO AutoMapper.
             var inPost = new Post()
             {
@@ -34,7 +40,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
             }
             catch (DbUpdateConcurrencyException)
             {
-                return new UpdatePostResponse() { Post = null };
+                return Result.Fail<Models.Post>(new ConcurrencyError());
             }
 
             // TODO AutoMapper.
@@ -45,7 +51,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
                 Content = inPost.Content,
             };
 
-            return new UpdatePostResponse() { Post = outPost };
+            return Result.Ok(outPost);
         }
     }
 }

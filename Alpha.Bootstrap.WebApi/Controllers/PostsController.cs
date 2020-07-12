@@ -29,8 +29,11 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             var command = new Features.Posts.GetAll.GetAllPostsRequest();
             var response = await _mediator.Send(command);
 
+            if (response.IsFailed)
+                return WebApiResponses.GetErrorResponse(response);
+
             // TODO AutoMapper.
-            var mappedPosts = response.Posts.Select(MapToPostDto).ToList();
+            var mappedPosts = response.Value.Select(MapToPostDto).ToList();
 
             return new GetAllPostsResponse()
             {
@@ -45,8 +48,11 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             var command = new Features.Posts.GetById.GetPostByIdRequest() { Id = id };
             var response = await _mediator.Send(command);
 
+            if (response.IsFailed)
+                return WebApiResponses.GetErrorResponse(response);
+
             // TODO AutoMapper.
-            var mappedPost = MapToPostDto(response.Post);
+            var mappedPost = MapToPostDto(response.Value);
 
             return new GetPostByIdResponse()
             {
@@ -65,8 +71,11 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             };
             var response = await _mediator.Send(command);
 
+            if (response.IsFailed)
+                return WebApiResponses.GetErrorResponse(response);
+
             // TODO AutoMapper.
-            var mappedPost = MapToPostDto(response.Post);
+            var mappedPost = MapToPostDto(response.Value);
 
             return CreatedAtRoute("GetPostById", new { mappedPost.Id }, mappedPost);
         }
@@ -86,8 +95,8 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             };
             var response = await _mediator.Send(command);
 
-            if (response.Post == null)
-                return NotFound();
+            if (response.IsFailed)
+                return WebApiResponses.GetErrorResponse(response);
 
             var routeUrl = Url.RouteUrl(new UrlRouteContext()
             {
@@ -107,7 +116,10 @@ namespace Alpha.Bootstrap.WebApi.Controllers
         public async Task<ActionResult> DeleteById(Guid id)
         {
             var command = new Features.Posts.DeleteById.DeletePostByIdRequest() { Id = id };
-            await _mediator.Send(command);
+            var result = await _mediator.Send(command);
+
+            if (result.IsFailed)
+                return WebApiResponses.GetErrorResponse(result);
 
             return NoContent();
         }

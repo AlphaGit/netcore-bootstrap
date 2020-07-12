@@ -1,14 +1,16 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL;
 using Alpha.Bootstrap.Logic.Models;
+using FluentResults;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Bootstrap.Logic.Features.Posts.GetAll
 {
-    public class GetAllPostsHandler : IRequestHandler<GetAllPostsRequest, GetAllPostsResponse>
+    public class GetAllPostsHandler : IRequestHandler<GetAllPostsRequest, Result<ICollection<Post>>>
     {
         private readonly BlogDbContext _dbContext;
 
@@ -17,7 +19,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.GetAll
             _dbContext = dbContext;
         }
 
-        public async Task<GetAllPostsResponse> Handle(GetAllPostsRequest getAllPostsRequest, CancellationToken cancellationToken)
+        public async Task<Result<ICollection<Post>>> Handle(GetAllPostsRequest getAllPostsRequest, CancellationToken cancellationToken)
         {
             var posts = await _dbContext.Posts.ToListAsync(cancellationToken);
 
@@ -29,7 +31,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.GetAll
                 Content = p.Content,
             }).ToList();
 
-            return new GetAllPostsResponse() { Posts = mappedPosts };
+            return Result.Ok<ICollection<Post>>(mappedPosts);
         }
     }
 }
