@@ -6,7 +6,7 @@ A bootstrap project to get quickly up and running with dotnet projects.
 
 * Docker 17+
 * Visual Studio 15.7+
-* NetCore 2.1.300+ SDK
+* NetCore 3.1 SDK
 
 ## How to setup your project from this one
 

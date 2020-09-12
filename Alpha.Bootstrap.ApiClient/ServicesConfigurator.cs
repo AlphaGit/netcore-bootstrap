@@ -21,6 +21,10 @@ namespace Alpha.Bootstrap.ApiClient
             { typeof(IApiClient), typeof(Implementations.ApiClient) },
             { typeof(IAuthenticationClient), typeof(AuthenticationClient) },
             { typeof(IPostsClient), typeof(PostsClient) },
+        };
+
+        public static IDictionary<Type, Type> HttpClientRegistrations = new Dictionary<Type, Type>()
+        {
             { typeof(IRestClient), typeof(RestClient) },
         };
     }

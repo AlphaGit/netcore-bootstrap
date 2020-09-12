@@ -19,12 +19,12 @@ namespace Alpha.Bootstrap.IntegrationTests
             services
                 .AddMvc()
                 .AddApplicationPart(typeof(Startup).Assembly)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             new TestServicesConfigurator().ConfigureServices(services);
         }
 
-        public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             base.Configure(app, env);
 

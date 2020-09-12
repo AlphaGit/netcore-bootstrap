@@ -28,8 +28,11 @@ namespace Alpha.Bootstrap.WebApi
                     o.ConfigureWarnings(w => w.Default(WarningBehavior.Log));
 
                     // TODO Move into configuration.
-                    o.UseNpgsql(
-                        "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;");
+                    // Localhost: Use this when running from your IDE
+                    // var connectionString = "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
+                    // Docker Local: Use this when running from inside container
+                    var connectionString = "Server=netcore-bootstrap-psql;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
+                    o.UseNpgsql(connectionString);
                 });
         }
 
@@ -39,7 +42,6 @@ namespace Alpha.Bootstrap.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Alpha.Bootstrap API", Version = "v1" });
                 c.EnableAnnotations();
-                c.DescribeAllEnumsAsStrings();
             });
         }
     }
