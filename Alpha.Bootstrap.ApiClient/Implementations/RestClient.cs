@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Alpha.Bootstrap.ApiClient.Implementations
 {
@@ -67,7 +67,7 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
         {
             if (body == null) return null;
 
-            var serializedObject = JsonConvert.SerializeObject(body, Formatting.None);
+            var serializedObject = JsonSerializer.Serialize(body);
             return new StringContent(serializedObject, Encoding.UTF8, "application/json");
         }
 
@@ -114,7 +114,10 @@ namespace Alpha.Bootstrap.ApiClient.Implementations
         private async Task<TResource> ParseResponse<TResource>(HttpResponseMessage response)
         {
             var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<TResource>(responseContent);
+            return JsonSerializer.Deserialize<TResource>(responseContent, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
         }
     }
 }

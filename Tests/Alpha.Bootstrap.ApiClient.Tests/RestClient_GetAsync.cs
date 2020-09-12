@@ -52,7 +52,7 @@ namespace Alpha.Bootstrap.ApiClient.Tests
         public async Task DeserializesContent()
         {
             // Arrange.
-            var expectedResponse = "{'name': 'Example Name', 'title': 'Example Title'}";
+            var expectedResponse = "{\"name\": \"Example Name\", \"title\": \"Example Title\"}";
             _mockHttpClient.When(HttpMethod.Get, "https://localhost/exampleUrl")
                 .Respond("application/json", expectedResponse);
 
