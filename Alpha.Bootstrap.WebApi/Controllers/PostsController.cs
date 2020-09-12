@@ -37,7 +37,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
 
             return new GetAllPostsResponse()
             {
-                Posts = mappedPosts
+                Posts = mappedPosts,
             };
         }
 
@@ -56,7 +56,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
 
             return new GetPostByIdResponse()
             {
-                Post = mappedPost
+                Post = mappedPost,
             };
         }
 
@@ -91,7 +91,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
                     Content = postUpdateDto.Content,
                     Id = id,
                     Title = postUpdateDto.Title,
-                }
+                },
             };
             var response = await _mediator.Send(command);
 
@@ -103,7 +103,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
                 Host = Request.Host.Host,
                 Protocol = Request.Scheme,
                 RouteName = "GetPostById",
-                Values = new { Id = id }
+                Values = new { Id = id },
             });
 
             Response.Headers.Add("Location", routeUrl);

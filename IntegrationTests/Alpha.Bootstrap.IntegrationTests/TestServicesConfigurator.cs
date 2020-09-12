@@ -15,7 +15,7 @@ namespace Alpha.Bootstrap.IntegrationTests
                 .AddDbContext<BlogDbContext>(options =>
                 {
                     options.UseSqlite($"DataSource=file:{appUniqueConnection}?mode=memory&cache=shared");
-                    options.ConfigureWarnings(w => w.Log());
+                    options.ConfigureWarnings(w => w.Default(WarningBehavior.Log));
                     options.EnableSensitiveDataLogging();
                 }, ServiceLifetime.Transient);
         }
