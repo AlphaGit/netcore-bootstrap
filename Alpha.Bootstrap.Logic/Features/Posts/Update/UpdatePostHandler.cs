@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Alpha.Bootstrap.DAL;
 using Alpha.Bootstrap.DAL.Models;
 using Alpha.Bootstrap.Logic.Models.Errors;
+using AutoMapper;
 using FluentResults;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
     public class UpdatePostHandler : IRequestHandler<UpdatePostRequest, Result<Models.Post>>
     {
         private readonly BlogDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public UpdatePostHandler(BlogDbContext dbContext)
+        public UpdatePostHandler(BlogDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<Result<Models.Post>> Handle(UpdatePostRequest updatePostRequest, CancellationToken cancellationToken)
@@ -24,13 +27,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
             if (!postExists)
                 return Result.Fail<Models.Post>(new ResourceNotFoundError());
 
-            // TODO AutoMapper.
-            var inPost = new Post()
-            {
-                Content = updatePostRequest.Post.Content,
-                Id = updatePostRequest.Post.Id,
-                Title = updatePostRequest.Post.Title,
-            };
+            var inPost = _mapper.Map<Post>(updatePostRequest.Post);
 
             try
             {
@@ -43,13 +40,7 @@ namespace Alpha.Bootstrap.Logic.Features.Posts.Update
                 return Result.Fail<Models.Post>(new ConcurrencyError());
             }
 
-            // TODO AutoMapper.
-            var outPost = new Models.Post
-            {
-                Id = inPost.Id,
-                Title = inPost.Title,
-                Content = inPost.Content,
-            };
+            var outPost = _mapper.Map<Models.Post>(inPost);
 
             return Result.Ok(outPost);
         }

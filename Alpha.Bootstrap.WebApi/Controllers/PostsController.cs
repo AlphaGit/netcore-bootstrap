@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Dtos.v1.Posts;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -16,10 +18,12 @@ namespace Alpha.Bootstrap.WebApi.Controllers
     public class PostsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public PostsController(IMediator mediator)
+        public PostsController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -32,8 +36,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             if (response.IsFailed)
                 return WebApiResponses.GetErrorResponse(response);
 
-            // TODO AutoMapper.
-            var mappedPosts = response.Value.Select(MapToPostDto).ToList();
+            var mappedPosts = _mapper.Map<ICollection<PostDto>>(response.Value);
 
             return new GetAllPostsResponse()
             {
@@ -51,8 +54,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             if (response.IsFailed)
                 return WebApiResponses.GetErrorResponse(response);
 
-            // TODO AutoMapper.
-            var mappedPost = MapToPostDto(response.Value);
+            var mappedPost = _mapper.Map<PostDto>(response.Value);
 
             return new GetPostByIdResponse()
             {
@@ -74,8 +76,7 @@ namespace Alpha.Bootstrap.WebApi.Controllers
             if (response.IsFailed)
                 return WebApiResponses.GetErrorResponse(response);
 
-            // TODO AutoMapper.
-            var mappedPost = MapToPostDto(response.Value);
+            var mappedPost = _mapper.Map<PostDto>(response.Value);
 
             return CreatedAtRoute("GetPostById", new { mappedPost.Id }, mappedPost);
         }
@@ -122,16 +123,6 @@ namespace Alpha.Bootstrap.WebApi.Controllers
                 return WebApiResponses.GetErrorResponse(result);
 
             return NoContent();
-        }
-
-        private static PostDto MapToPostDto(Post post)
-        {
-            return post == null ? null : new PostDto()
-            {
-                Content = post.Content,
-                Id = post.Id,
-                Title = post.Title,
-            };
         }
     }
 }

@@ -5,6 +5,7 @@ using Alpha.Bootstrap.Logic.Features.Posts.GetById;
 using Alpha.Bootstrap.Logic.Models;
 using Alpha.Bootstrap.WebApi.Controllers;
 using Alpha.Bootstrap.WebApi.Tests.Fakers;
+using Alpha.Bootstrap.WebApi.Tests.Fixtures;
 using FluentResults;
 using MediatR;
 using Moq;
@@ -12,6 +13,7 @@ using Xunit;
 
 namespace Alpha.Bootstrap.WebApi.Tests.Controllers
 {
+    [Collection(nameof(MapperFixture))]
     public class PostsController_GetById
     {
         private readonly LogicDtoFaker _logicDtoFaker;
@@ -20,13 +22,13 @@ namespace Alpha.Bootstrap.WebApi.Tests.Controllers
 
         private readonly Mock<IMediator> _mediatorMock;
 
-        public PostsController_GetById()
+        public PostsController_GetById(MapperFixture mapperFixture)
         {
             _logicDtoFaker = new LogicDtoFaker();
 
             _mediatorMock = new Mock<IMediator>();
 
-            _controller = new PostsController(_mediatorMock.Object);
+            _controller = new PostsController(_mediatorMock.Object, mapperFixture.Mapper);
         }
 
         [Fact]

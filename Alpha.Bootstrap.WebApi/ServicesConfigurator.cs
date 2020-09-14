@@ -1,4 +1,7 @@
-﻿using Alpha.Bootstrap.DAL;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Alpha.Bootstrap.DAL;
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +11,12 @@ namespace Alpha.Bootstrap.WebApi
 {
     public class ServicesConfigurator
     {
+        public static readonly IEnumerable<Profile> AutoMapperProfiles = new Profile[]
+        {
+            new AutoMapperProfile(),
+            new Logic.AutoMapperProfile(),
+        };
+
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureSwagger(services);
@@ -18,6 +27,9 @@ namespace Alpha.Bootstrap.WebApi
         protected virtual void ConfigureFeatures(IServiceCollection services)
         {
             services.AddMediatR(typeof(Logic.ServicesConfigurator).Assembly);
+
+            var autoMapperProfileTypes = AutoMapperProfiles.Select(p => p.GetType()).ToArray();
+            services.AddAutoMapper(autoMapperProfileTypes);
         }
 
         protected virtual void ConfigureDataAccess(IServiceCollection services)
