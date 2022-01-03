@@ -41,9 +41,9 @@ namespace Alpha.Bootstrap.WebApi
 
                     // TODO Move into configuration.
                     // Localhost: Use this when running from your IDE
-                    var connectionString = "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
+                    // var connectionString = "Server=127.0.0.1;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
                     // Docker Local: Use this when running from inside container
-                    // var connectionString = "Server=netcore-bootstrap-psql;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
+                    var connectionString = "Server=netcore-bootstrap-psql;Port=5432;Database=appDb;Userid=appUser;Password=appPassword;CommandTimeout=30;SSL Mode=Require;Trust Server Certificate=true;";
                     o.UseNpgsql(connectionString);
                 });
         }

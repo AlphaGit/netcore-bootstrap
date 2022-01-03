@@ -1,0 +1,1 @@
+docker build -f Alpha.Bootstrap.WebApi/Dockerfile -t netcore-bootstrap-webapi:local .

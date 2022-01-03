@@ -1,0 +1,1 @@
+./build-docker-webapi.sh && ./run-webapi.sh
